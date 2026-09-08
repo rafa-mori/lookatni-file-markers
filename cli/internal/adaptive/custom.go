@@ -12,6 +12,8 @@ import (
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/module/kbx"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/parser"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/utils"
+
+	gl "github.com/kubex-ecosystem/logz"
 )
 
 // CustomParser handles parsing with a specific marker configuration.
@@ -91,7 +93,7 @@ func (cp *CustomParser) ExtractFiles(markedFile, outputDir string, options kbx.E
 			_ = os.MkdirAll(dir, 0o755)
 		}
 		if err := os.WriteFile(p, []byte(m.Content), 0o644); err != nil {
-			out.Errors = append(out.Errors, fmt.Sprintf("Failed to write %s: %v", p, err))
+			out.Errors = append(out.Errors, gl.Sprintf("Failed to write %s: %v", p, err))
 			out.Success = false
 			continue
 		}
@@ -211,16 +213,16 @@ func (cg *CustomGenerator) GenerateFromDirectory(sourceDir, outputFile string, e
 	for _, rel := range files {
 		marker := markerConfig.FormatMarker(rel) + "\n"
 		if _, err := f.WriteString(marker); err != nil {
-			res.Errors = append(res.Errors, fmt.Sprintf("marker %s: %v", rel, err))
+			res.Errors = append(res.Errors, gl.Sprintf("marker %s: %v", rel, err))
 			continue
 		}
 		data, err := os.ReadFile(filepath.Join(sourceDir, rel))
 		if err != nil {
-			res.Errors = append(res.Errors, fmt.Sprintf("read %s: %v", rel, err))
+			res.Errors = append(res.Errors, gl.Sprintf("read %s: %v", rel, err))
 			continue
 		}
 		if _, err := f.Write(data); err != nil {
-			res.Errors = append(res.Errors, fmt.Sprintf("write %s: %v", rel, err))
+			res.Errors = append(res.Errors, gl.Sprintf("write %s: %v", rel, err))
 			continue
 		}
 		if len(data) == 0 || data[len(data)-1] != '\n' {

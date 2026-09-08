@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/kubex-ecosystem/grompt"
-	gl "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 )
 
 // GromptIntegration provides prompt engineering capabilities for LookAtni

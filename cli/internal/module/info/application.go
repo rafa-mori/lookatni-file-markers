@@ -5,7 +5,7 @@ import (
 	_ "embed"
 	"encoding/json"
 
-	l "github.com/kubex-ecosystem/logz"
+	gl "github.com/kubex-ecosystem/logz"
 )
 
 //go:embed manifest.json
@@ -65,8 +65,8 @@ func (m *manifest) IsPrivate() bool        { return m.Private }
 func init() {
 	_, err := GetManifest()
 	if err != nil {
-		l.GetLogger("Kubex")
-		l.Fatal("Failed to get manifest: " + err.Error())
+		gl.GetLogger("Kubex")
+		gl.Fatal("Failed to get manifest: " + err.Error())
 	}
 }
 

@@ -3,27 +3,26 @@ package vscode
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
-	"github.com/kubex-ecosystem/logz"
+	gl "github.com/kubex-ecosystem/logz"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/parser"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/transpiler"
 )
 
 // Server handles VS Code integration requests.
 type Server struct {
-	logger     *logz.LoggerZ
+	logger     *gl.LogzLoggerZ
 	port       int
 	parser     *parser.MarkerParser
 	transpiler *transpiler.Transpiler
 }
 
 // NewServer creates a new VS Code integration server.
-func NewServer(log *logz.LoggerZ, port int) *Server {
+func NewServer(log *gl.LoggerZ, port int) *Server {
 	if log == nil {
-		log = *logz.LoggerZ
+		log = gl.GetLoggerZ("lookatni")
 	}
 	// Load default HTML template
 	htmlTemplate := `<!doctype html>
@@ -96,7 +95,7 @@ func (s *Server) handleExtract(w http.ResponseWriter, r *http.Request) {
 
 	result, err := s.parser.ExtractFiles(req.MarkedFile, req.OutputDir, req.Options)
 	if err != nil {
-		s.sendError(w, fmt.Sprintf("Extraction failed: %v", err), http.StatusInternalServerError)
+		s.sendError(w, gl.Sprintf("Extraction failed: %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -120,7 +119,7 @@ func (s *Server) handleValidate(w http.ResponseWriter, r *http.Request) {
 
 	result, err := s.parser.ValidateMarkers(req.MarkedFile, req.Strict)
 	if err != nil {
-		s.sendError(w, fmt.Sprintf("Validation failed: %v", err), http.StatusInternalServerError)
+		s.sendError(w, gl.Sprintf("Validation failed: %v", err), http.StatusInternalServerError)
 		return
 	}
 

@@ -1,16 +1,16 @@
 {
   "name": "Kubex - LookAtni File Markers",
   "application": "lookatni-file-markers",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": false,
   "published": true,
   "aliases": [
     "lookatniCli"
   ],
   "repository": "https://github.com/kubex-ecosystem/lookatni-file-markers",
-  "homepage": "https://lookatni.kubex.world/",
+  "homepage": "https://lookatni.kubex.space/",
   "description": "Kubex - LookAtni File Markers: A meta-framework for handling file markers, entire projects composition/decomposition, and much more.",
-  "go_version": "1.25.4",
+  "go_version": "1.26.3",
   "main": "cmd/main.go",
   "bin": "lookatniCli",
   "author": "Rafael Mori <faelmori@gmail.com>",

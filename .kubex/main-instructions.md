@@ -54,7 +54,7 @@ All material is public and collaborative under the MIT license, and authorship r
 >
 > In all other contexts (documentation, modules, interfaces, banners, etc.), use only organizational Kubex contacts:
 >
-> - **Email:** [contact@kubex.world](mailto:contact@kubex.world)
+> - **Email:** [contact@kubex.space](mailto:contact@kubex.space)
 > - **GitHub:** [github.com/kubex-ecosystem](https://github.com/kubex-ecosystem)
 > - **LinkedIn:** [linkedin.com/company/kubex-ecosystem](https://linkedin.com/company/kubex-ecosystem)
 

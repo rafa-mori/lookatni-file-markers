@@ -2,7 +2,7 @@
 package module
 
 import (
-	gl "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 	cc "github.com/kubex-ecosystem/lookatni-file-markers/cmd/cli"
 	vs "github.com/kubex-ecosystem/lookatni-file-markers/internal/module/version"
 	"github.com/spf13/cobra"
