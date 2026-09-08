@@ -3,9 +3,10 @@ package info
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
+
+	gl "github.com/kubex-ecosystem/logz"
 )
 
 type Reference struct {
@@ -31,16 +32,16 @@ func (c *Control) GetVersion() string { return c.Reference.Version }
 
 // LoadControlByModule carrega o controle de um arquivo específico do módulo.
 func LoadControlByModule(dir string, moduleName string) (*Control, error) {
-	file := filepath.Join(dir, fmt.Sprintf("control_%s.json", moduleName))
+	file := filepath.Join(dir, gl.Sprintf("control_%s.json", moduleName))
 	f, err := os.Open(file)
 	if err != nil {
-		return nil, fmt.Errorf("erro ao abrir %s: %w", file, err)
+		return nil, gl.Errorf("erro ao abrir %s: %w", file, err)
 	}
 	defer f.Close()
 	var c Control
 	dec := json.NewDecoder(f)
 	if err := dec.Decode(&c); err != nil {
-		return nil, fmt.Errorf("erro ao decodificar %s: %w", file, err)
+		return nil, gl.Errorf("erro ao decodificar %s: %w", file, err)
 	}
 	c.Reference = Reference{Name: moduleName}
 	return &c, nil
@@ -49,12 +50,12 @@ func LoadControlByModule(dir string, moduleName string) (*Control, error) {
 // SaveControl salva o controle do módulo em arquivo separado.
 func (c *Control) SaveControl(dir string) error {
 	if c.Reference.Name == "" {
-		return fmt.Errorf("Reference.Name não pode ser vazio para salvar o controle")
+		return gl.Errorf("Reference.Name não pode ser vazio para salvar o controle")
 	}
-	file := filepath.Join(dir, fmt.Sprintf("control_%s.json", c.Reference.Name))
+	file := filepath.Join(dir, gl.Sprintf("control_%s.json", c.Reference.Name))
 	f, err := os.Create(file)
 	if err != nil {
-		return fmt.Errorf("erro ao criar %s: %w", file, err)
+		return gl.Errorf("erro ao criar %s: %w", file, err)
 	}
 	defer f.Close()
 	enc := json.NewEncoder(f)

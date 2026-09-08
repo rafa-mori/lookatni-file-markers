@@ -2,11 +2,10 @@ package kbx
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"reflect"
 
-	gl "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 )
 
 var (
@@ -155,7 +154,7 @@ func HydrateMapFromEnvOrDefaults[T any](dbType string, target map[string]T, defa
 	defer func(hCtl chan any) {
 		if r := recover(); r != nil {
 			// Handle the panic (e.g., log the error)
-			gl.Log("error", fmt.Sprintf("Panic at the Hydration: %v", r))
+			gl.Log("error", gl.Sprintf("Panic at the Hydration: %v", r))
 			if hydrationCtl != nil {
 				gl.Log("info", "HydrationCtl", "Async hydration due to panic recovery")
 				for key, defaultValue := range defaults {
@@ -173,7 +172,7 @@ func HydrateMapFromEnvOrDefaults[T any](dbType string, target map[string]T, defa
 		)
 	}
 
-	gl.Log("debug", fmt.Sprintf("Hydrated Map for DBType %s: %+v", dbType, target))
+	gl.Log("debug", gl.Sprintf("Hydrated Map for DBType %s: %+v", dbType, target))
 
 	return target
 }

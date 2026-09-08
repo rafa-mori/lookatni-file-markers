@@ -3,7 +3,7 @@ package cli
 import (
 	"os"
 
-	gl "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/app"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/metadata"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/vscode"
@@ -66,7 +66,7 @@ func extractCommand() *cobra.Command {
 		}, os.Getenv("LOOKATNI_HIDEBANNER") == "true"),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			markedFile := args[0]
 			outputDir := args[1]
@@ -120,7 +120,7 @@ func validateCommand() *cobra.Command {
 		}, false),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			markedFile := args[0]
 
@@ -154,7 +154,7 @@ func generateCommand() *cobra.Command {
 		}, false),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			sourceDir := args[0]
 			outputFile := args[1]
@@ -221,7 +221,7 @@ func transpileCommand() *cobra.Command {
 		}, os.Getenv("LOOKATNI_HIDEBANNER") == "true"),
 		Run: func(cmd *cobra.Command, args []string) {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			if input == "" || outputDir == "" {
 				gl.Log("error", "Input file/directory and output directory must be specified")
@@ -265,7 +265,7 @@ func presetsCommand() *cobra.Command {
 		}, os.Getenv("LOOKATNI_HIDEBANNER") == "true"),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			// fmt.Println("🎨 Available Marker Presets:")
 			gl.Log("info", "Available Marker Presets:")
@@ -307,7 +307,7 @@ func vscodeCommand() *cobra.Command {
 		}, os.Getenv("LOOKATNI_HIDEBANNER") == "true"),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 			// Start VS Code integration server
 			server := vscode.NewServer(nil, port)
@@ -351,7 +351,7 @@ Supports multiple AI providers (OpenAI, Claude, Gemini, etc.) and custom refacto
 		}, os.Getenv("LOOKATNI_HIDEBANNER") == "true"),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if debug {
-				gl.SetDebug(true)
+				gl.SetDebugMode(true)
 			}
 
 			artifactFile := args[0]

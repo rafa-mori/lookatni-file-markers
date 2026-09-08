@@ -1,5 +1,6 @@
 {
   "name": "lookatni-core",
+  "displayName": "LookAtni Core",
   "description": "Core library for LookAtni file markers - generate, extract and validate project markers",
   "version": "1.2.1",
   "main": "./dist/lib/index.js",
@@ -50,5 +51,12 @@
     "typescript": "^5.7.0",
     "@types/node": "^22.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "maintainers": [
+    {
+      "name": "Rafa Mori",
+      "email": "faelmori@gmail.com",
+      "url": "https://rafa-mori.dev"
+    }
+  ]
 }

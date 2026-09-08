@@ -1,18 +1,17 @@
 package main
 
 import (
-	l "github.com/kubex-ecosystem/logz"
-	gl "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 	"github.com/kubex-ecosystem/lookatni-file-markers/internal/module"
 )
 
-var logger = l.GetLogger("lookatni")
+var logger = gl.GetLogger("lookatni")
 
 func init() {
-	l.SetLogger(logger)
+	gl.GetLogger("lookatni")
 	// l.SetLogConfig(logz.LoggerZ.GetConfig())
 
-	l.SetLogLevel("info")
+	// gl.SetLogLevel("info")
 	// l.SetLogWriter(logz.LoggerZ.GetWriter())
 }
 

@@ -11,14 +11,12 @@ import (
 	"strings"
 	"time"
 
-	l "github.com/kubex-ecosystem/logz"
-	lgr "github.com/kubex-ecosystem/logz/logger"
+	gl "github.com/kubex-ecosystem/logz"
 	manifest "github.com/kubex-ecosystem/lookatni-file-markers/internal/module/info"
 	"github.com/spf13/cobra"
 )
 
 var (
-	gl   = lgr.LoggerG.GetLogger()
 	info manifest.Manifest
 	vrs  Service
 	err  error
@@ -26,7 +24,7 @@ var (
 
 func init() {
 
-	gl.SetConfig(l.GetLogConfig())
+	// gl.SetConfig(l.GetLogConfig())
 
 	if info == nil {
 		info, err = manifest.GetManifest()
@@ -429,10 +427,10 @@ func GetLatestVersionFromGit() string {
 }
 func GetLatestVersionInfo() string {
 	if info.IsPrivate() {
-		lgr.Log("error", "Cannot fetch latest version for private repositories.")
+		gl.Log("error", "Cannot fetch latest version for private repositories.")
 		return "Cannot fetch latest version for private repositories."
 	}
-	lgr.Log("info", "Latest version: "+GetLatestVersionFromGit())
+	gl.Log("info", "Latest version: "+GetLatestVersionFromGit())
 	return "Latest version: " + GetLatestVersionFromGit()
 }
 func GetVersionInfoWithLatestAndCheck() string {
